@@ -1,0 +1,43 @@
+{
+  "name": "pm2-ant",
+  "version": "0.0.1",
+  "description": "Unitech/PM2 performance monioring using Statsd and Graphite",
+  "scripts": {
+    
+  },
+  "bin": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Tjatse/pm2-ant.git"
+  },
+  "keywords": [
+    "monitor",
+    "dashboard",
+    "PM2",
+    "PM2 interface",
+    "PM2 statsd",
+    "PM2 status",
+    "PM2 performance",
+    "PM2 dashboard",
+    "PM2 monitor",
+    "PM2 graphite"
+  ],
+  "author": {
+    "name": "Tjatse"
+  },
+  "license": "Apache, Version 2.0",
+  "bugs": {
+    "url": "https://github.com/Tjatse/pm2-ant/issues"
+  },
+  "engines": [
+    "node >= 0.8.0"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/Tjatse/pm2-ant"
+}
