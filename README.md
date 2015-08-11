@@ -15,6 +15,9 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 
 ![flows](screenshots/flows.jpg)
 
+## Requirement
+- [Graphite](docs/graphite.md)
+
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
