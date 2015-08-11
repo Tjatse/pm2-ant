@@ -1,4 +1,6 @@
-# [Grahphite](http://graphite.readthedocs.org/en/latest/)
+# Graphite
+[Official Document](http://graphite.readthedocs.org/en/latest/)
+[Quickstart Guide](http://graphite.wikidot.com/quickstart-guide)
 
 ## Installation
 
@@ -24,50 +26,52 @@ $ cp graphite.wsgi.example graphite.wsgi
 $ cp /opt/graphite/webapp/graphite/local_settings.py.example /opt/graphite/webapp/graphite/local_settings.py
 ```
 
+**References**
 - [carbon.conf](http://graphite.readthedocs.org/en/latest/config-carbon.html#carbon-conf)
 - [storage-schemas.conf](http://graphite.readthedocs.org/en/latest/config-carbon.html#storage-schemas-conf)
 - [Graphite-web’s local_settings.py](http://graphite.readthedocs.org/en/latest/config-local-settings.html)
 
-## Initialization
+## Initialize the database
 
 ```bash
 $ python /opt/graphite/webapp/graphite/manage.py syncdb
 ```
 
-## [Administering Carbon](http://graphite.readthedocs.org/en/latest/admin-carbon.html)
+## Start data collection daemon
+By default, carbon-cache.py will start a listener on port 2003 that will wait for data to be submitted.
 
 ```bash
 $ /opt/graphite/bin/carbon-cache.py start
 ```
 
-## Administering Graphite
+**References**
+[carbon](http://graphite.readthedocs.org/en/latest/admin-carbon.html)
+
+## Run the graphite web interface under the django development server
 
 ```bash
 $ /opt/graphite/bin/run-graphite-devel-server.py --libs=/opt/graphite/webapp/ /opt/graphite/
 ```
 
-## Probably Problems
+## Probably problems
 
-*on Mac OSX*
-Required **XCode and Command Line Tools**
+- *Mac OS X*
 
-*TypeError: fetch() takes at most 3 arguments (4 given)*
-Mostly, your eggs are not matching the requirements.txt, try to uninstall them and reinstall again by `$ pip install -r requirements.txt`.
+  Required **XCode and Command Line Tools**
 
-*
-Package libffi was not found in the pkg-config search path.
-Perhaps you should add the directory containing `libffi.pc'
-to the PKG_CONFIG_PATH environment variable
-No package 'libffi' found
-*
+- *TypeError: fetch() takes at most 3 arguments (4 given)*
 
-```bash
-$ yum install libffi-devel.x86_64
-$ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig/
-```
+  Mostly, your eggs are not matching the requirements.txt, try to uninstall them and reinstall again by `$ pip install -r requirements.txt`.
 
-*_cffi_backend.c:2:20: fatal error: Python.h: No such file or directory*
+- *Package libffi was not found in the pkg-config search path. Perhaps you should add the directory containing `libffi.pc' to the PKG_CONFIG_PATH environment variable No package 'libffi' found*
 
-```bash
-$ yum install python-devel.x86_64
-```
+  ```bash
+  $ yum install libffi-devel.x86_64
+  $ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig/
+  ```
+
+- *_cffi_backend.c:2:20: fatal error: Python.h: No such file or directory*
+
+  ```bash
+  $ yum install python-devel.x86_64
+  ```
