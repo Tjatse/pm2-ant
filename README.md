@@ -2,6 +2,7 @@
 Unitech/PM2 performance monioring using Statsd and Graphite
 
 > I am still working on this - trying to demerge it from the products.
+> AFK...
 
 ## Why this?
 I'm using PM2 to run thousands applications on dozens of servers, the performance of PM2 (maybe applications) is hard to track on production environment, e.g.:
@@ -17,6 +18,8 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 
 ## Requirement
 - [Graphite](docs/graphite.md)
+- [StatsD](docs/statsd.md)
+- [collectd](docs/collectd.md) *(optional)*
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");

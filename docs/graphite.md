@@ -1,6 +1,6 @@
 # Graphite
-[Official Document](http://graphite.readthedocs.org/en/latest/)
-[Quickstart Guide](http://graphite.wikidot.com/quickstart-guide)
+- [Official Document](http://graphite.readthedocs.org/en/latest/)
+- [Quickstart Guide](http://graphite.wikidot.com/quickstart-guide)
 
 ## Installation
 
@@ -23,7 +23,8 @@ $ cd /opt/graphite/conf/
 $ cp carbon.conf.example carbon.conf
 $ cp storage-schemas.conf.example storage-schemas.conf
 $ cp graphite.wsgi.example graphite.wsgi
-$ cp /opt/graphite/webapp/graphite/local_settings.py.example /opt/graphite/webapp/graphite/local_settings.py
+$ cd /opt/graphite/webapp/graphite/
+$ cp local_settings.py.example local_settings.py
 ```
 
 **References**
@@ -47,7 +48,7 @@ $ /opt/graphite/bin/carbon-cache.py start
 **References**
 [carbon](http://graphite.readthedocs.org/en/latest/admin-carbon.html)
 
-## Run the graphite web interface under the django development server
+## Run the graphite web interface under the django development server (not necessary)
 
 ```bash
 $ /opt/graphite/bin/run-graphite-devel-server.py --libs=/opt/graphite/webapp/ /opt/graphite/
