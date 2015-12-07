@@ -2,7 +2,14 @@
 Unitech/PM2 performance monioring using Statsd and Graphite
 
 > I am still working on this - trying to demerge it from the products.
-> AFK...
+
+# Installation
+```bash
+$ npm install pm2-ant
+$ cd node_modules/pm2-ant
+# or
+$ git clone https://github.com/Tjatse/pm2-ant.git
+```
 
 ## Why this?
 I'm using PM2 to run thousands applications on dozens of servers, the performance of PM2 (maybe applications) is hard to track on production environment, e.g.:
@@ -20,6 +27,19 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 - [Graphite](docs/graphite.md)
 - [StatsD](docs/statsd.md)
 - [collectd](docs/collectd.md) *(optional)*
+
+When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to startup pm2-ant:
+```bash
+$ nohup node ./pm2-ant.js > /dev/null 2>&1 & echo $! > pm2-ant.pid
+```
+and to stop:
+```bash
+$ kill -9 `cat pm2-ant.pid`
+```
+
+Now you can view events with [Graphana](grafana.org).
+
+
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");

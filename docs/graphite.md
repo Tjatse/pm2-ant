@@ -27,6 +27,13 @@ $ cd /opt/graphite/webapp/graphite/
 $ cp local_settings.py.example local_settings.py
 ```
 
+storage-schemas.conf
+```
+[pm2]
+pattern = \.pm2\.
+retentions = 1h:6h,2h:1d
+```
+
 **References**
 - [carbon.conf](http://graphite.readthedocs.org/en/latest/config-carbon.html#carbon-conf)
 - [storage-schemas.conf](http://graphite.readthedocs.org/en/latest/config-carbon.html#storage-schemas-conf)

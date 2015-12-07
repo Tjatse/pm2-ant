@@ -21,3 +21,5 @@
  ```
  $ node stats.js ./config.js
  ```
+
+ [examples/statsd-config.js](examples/statsd-config.js)
