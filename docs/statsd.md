@@ -7,6 +7,7 @@
   ```
   $ git clone https://github.com/etsy/statsd.git
   $ cd statsd
+  $ npm install -l
   ```
 
 - Configuration

@@ -10,3 +10,6 @@ coverage
 build/Release
 node_modules
 statsd
+pkg
+src
+bin

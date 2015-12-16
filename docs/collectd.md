@@ -22,7 +22,7 @@ LoadPlugin write_graphite
     Port "2003"
     Protocol "tcp"
     LogSendErrors true
-    Prefix "collectd."
+    Prefix "pm2."
     Postfix ""
     StoreRates true
     AlwaysAppendDS false

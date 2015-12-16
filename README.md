@@ -9,6 +9,7 @@ $ npm install pm2-ant
 $ cd node_modules/pm2-ant
 # or
 $ git clone https://github.com/Tjatse/pm2-ant.git
+$ npm install -l
 ```
 
 ## Why this?
@@ -21,7 +22,7 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 
 ## How it works
 
-![flows](screenshots/flows.jpg)
+![flows](imgs/flows.jpg)
 
 ## Requirement
 - [Graphite](docs/graphite.md)
@@ -37,7 +38,7 @@ and to stop:
 $ kill -9 `cat pm2-ant.pid`
 ```
 
-Now you can view events with [Graphana](grafana.org).
+Now you can view events with [Graphana](http://grafana.org).
 
 
 

@@ -27,11 +27,11 @@ $ cd /opt/graphite/webapp/graphite/
 $ cp local_settings.py.example local_settings.py
 ```
 
-storage-schemas.conf
-```
+`storage-schemas.conf` example:
+```ini
 [pm2]
-pattern = \.pm2\.
-retentions = 1h:6h,2h:1d
+pattern = ^pm2\.
+retentions = 1m:1d,5m:7d,15m:30d
 ```
 
 **References**
