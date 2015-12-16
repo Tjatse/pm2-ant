@@ -5,11 +5,12 @@ Unitech/PM2 performance monioring using Statsd and Graphite
 
 # Installation
 ```bash
-$ npm install pm2-ant
+$ npm install pm2-ant --production
 $ cd node_modules/pm2-ant
 # or
 $ git clone https://github.com/Tjatse/pm2-ant.git
-$ npm install -l
+$ cd pm2-ant
+$ npm install --production
 ```
 
 ## Why this?

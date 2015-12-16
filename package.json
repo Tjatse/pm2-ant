@@ -1,6 +1,6 @@
 {
   "name": "pm2-ant",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Unitech/PM2 performance monioring using Statsd and Graphite",
   "scripts": {
     "start": "node pm2-ant.js"
