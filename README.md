@@ -45,7 +45,7 @@ Debug mode:
 $ DEBUG=ant:* node pm2-ant.js
 ```
 
-Now you can view events with [Graphana](http://grafana.org).
+Now you can view events with [Grafana](http://grafana.org).
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
