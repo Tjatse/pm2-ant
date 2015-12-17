@@ -45,7 +45,21 @@ Debug mode:
 $ DEBUG=ant:* node pm2-ant.js
 ```
 
-Now you can view events with [Grafana](http://grafana.org).
+Now you can view matrices with [Grafana](http://docs.grafana.org/installation/rpm/).
+
+![flows](imgs/grafana.jpg)
+
+statsD path:
+```
+stats.gauges.pm2.<node_name>.<app_name>.planned_restart_count
+stats.gauges.pm2.<node_name>.<app_name>.<pm_id>.planned_restart_count
+stats.gauges.pm2.<node_name>.<app_name>.unstable_restart_count
+stats.gauges.pm2.<node_name>.<app_name>.<pm_id>.unstable_restart_count
+stats.pm2.<node_name>.<app_name>.event.<event_name>
+stats.pm2.<node_name>.<app_name>.<pm_id>.event.<event_name>
+stats.timers.pm2.<node_name>.<app_name>.uptime
+stats.timers.pm2.<node_name>.<app_name>.<pm_id>.uptime
+```
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
