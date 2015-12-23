@@ -3,7 +3,7 @@ var Monitor = require('./lib/monitor'),
   path = require('path'),
   fs = require('fs'),
   pkg = require('./package.json'),
-  debug = require('debug')('ant:monitor');
+  Log = require('./lib/util/log');
 
 var confFile = './pm2-ant.ini';
 if (process.argv.length > 2) {
@@ -16,16 +16,6 @@ if (!fs.existsSync(confFile)) {
   return process.exit(0);
 }
 
-debug('by configured file ' + confFile);
-
-if (!process.send) {
-  console.log(chalk.cyan('pm2-ant v' + pkg.version + '\n' + 
-    'The MIT License (MIT)\n' + 
-    'Copyright (c) Tjatse <thisnamemeansnothing@gmail.com>\n' + 
-    'This program comes with ABSOLUTELY NO WARRANTY.\n' + 
-    'This is free software, and you are welcome to redistribute it under certain conditions.\n'));
-}
-
 var prefix = chalk.bold.green('[pm2-ant]');
 
 var monitor = Monitor({
@@ -33,34 +23,47 @@ var monitor = Monitor({
 });
 monitor.run();
 
-console.log(prefix, 'The monitor is running.');
+var log, logConf = monitor.options.log;
+if (logConf) {
+  if (!logConf.file) {
+    logConf.date = false;
+    logConf.prefix = false;
+  }
+  log = Log(logConf);
+}
+
+log.info(chalk.cyan('█▀▀█ █▀▄▀█ █▀█ ░░ █▀▀█ █▀▀▄ ▀▀█▀▀ \n' +
+  '█░░█ █░▀░█ ░▄▀ ▀▀ █▄▄█ █░░█ ░░█░░ \n' +
+  '█▀▀▀ ▀░░░▀ █▄▄ ░░ ▀░░▀ ▀░░▀ ░░▀░░ \n'));
+
+log.info(prefix, 'The monitor is running.');
 
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 process.on('SIGHUP', restart);
 
 process.on('uncaughtException', function (err) {
-  console.error(err.stack);
+  log.error(err.stack);
   shutdown(1);
 });
 
 function shutdown(code) {
-  console.log(prefix, 'Shutting down pm2-ant....');
+  log.info(prefix, 'Shutting down pm2-ant....');
   monitor.quit();
-  console.log(prefix, 'pm2-emitter and statsd dgram sockets are both closed.');
+  log.info(prefix, 'pm2-emitter and statsd dgram sockets are both closed.');
 
-  console.log(prefix, 'Shutdown complete!');
+  log.info(prefix, 'Shutdown complete!');
   process.exit(code || 0);
 }
 
 function restart() {
   if (process.send) {
-    console.log(prefix, 'Restarting...');
+    log.info(prefix, 'Restarting...');
     process.send({
       action: 'restart'
     });
   } else {
-    console.error(prefix, 'Could not restart monitor, shutting down.');
+    log.error(prefix, 'Could not restart monitor, shutting down.');
     shutdown(1);
   }
 }
