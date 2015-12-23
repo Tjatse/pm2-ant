@@ -16,12 +16,9 @@ if (!fs.existsSync(confFile)) {
   return process.exit(0);
 }
 
-var prefix = chalk.bold.green('[pm2-ant]');
-
 var monitor = Monitor({
   confFile: confFile
 });
-monitor.run();
 
 var log, logConf = monitor.options.log;
 if (logConf) {
@@ -32,38 +29,53 @@ if (logConf) {
   log = Log(logConf);
 }
 
-log.info(chalk.cyan('█▀▀█ █▀▄▀█ █▀█ ░░ █▀▀█ █▀▀▄ ▀▀█▀▀ \n' +
+log._log({
+  level: Log.INFO,
+  date: false,
+  prefix: false
+}, chalk.cyan(
+  '\n' +
+  '█▀▀█ █▀▄▀█ █▀█ ░░ █▀▀█ █▀▀▄ ▀▀█▀▀ \n' +
   '█░░█ █░▀░█ ░▄▀ ▀▀ █▄▄█ █░░█ ░░█░░ \n' +
   '█▀▀▀ ▀░░░▀ █▄▄ ░░ ▀░░▀ ▀░░▀ ░░▀░░ \n'));
 
-log.info(prefix, 'The monitor is running.');
+
+monitor.setLogger(log);
+monitor.run();
 
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 process.on('SIGHUP', restart);
-
-process.on('uncaughtException', function (err) {
-  log.error(err.stack);
-  shutdown(1);
-});
+process.on('uncaughtException', caughtException);
 
 function shutdown(code) {
-  log.info(prefix, 'Shutting down pm2-ant....');
+  log.info('Shutting down....');
   monitor.quit();
-  log.info(prefix, 'pm2-emitter and statsd dgram sockets are both closed.');
-
-  log.info(prefix, 'Shutdown complete!');
-  process.exit(code || 0);
+  log.info('Both', chalk.bold('pm2-emitter'), 'and', chalk.bold('statsd dgram'), 'sockets are closed.');
+  log.info('Shutdown complete!');
+  exitGraceful(code);
 }
 
 function restart() {
+  log.info('Restarting...');
   if (process.send) {
-    log.info(prefix, 'Restarting...');
     process.send({
       action: 'restart'
     });
   } else {
-    log.error(prefix, 'Could not restart monitor, shutting down.');
+    log.error('Could not restart monitor, shutting down.');
     shutdown(1);
   }
+}
+
+function caughtException(err) {
+  log.error(err.stack);
+  shutdown(1);
+}
+
+function exitGraceful(code) {
+  code = code || 0;
+  log.stream.write(' ', function () {
+    process.exit(code);
+  });
 }
