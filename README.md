@@ -30,6 +30,7 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 - [StatsD](docs/statsd.md)
 - [collectd](docs/collectd.md) *(optional)*
 
+## Start-up
 When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to manage `pm2-ant`:
 ```bash
 $ ./pm2-ant start
@@ -50,6 +51,7 @@ var pm2Ant = require('pm2-ant');
 pm2Ant.start([options]);
 ```
 
+## View Matrices
 Now you can view matrices with [Grafana](http://docs.grafana.org/installation/rpm/).
 
 ![flows](imgs/grafana.jpg)
@@ -64,6 +66,22 @@ stats.pm2.<node_name>.<app_name>.event.<event_name>
 stats.pm2.<node_name>.<app_name>.<pm_id>.event.<event_name>
 stats.timers.pm2.<node_name>.<app_name>.uptime
 stats.timers.pm2.<node_name>.<app_name>.<pm_id>.uptime
+```
+
+## Configuration
+`./pm2-ant.ini` defaults:
+```ini
+node = LocalPM2
+pm2 = ~/.pm2
+refresh = 5000
+statsd = 127.0.0.1:8125
+daemonize = true
+
+[log]
+dir = ./logs
+prefix = true
+date = false
+level = debug
 ```
 
 ## License
