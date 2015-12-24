@@ -15,11 +15,11 @@ $ npm install --production
 
 ## Why this?
 I'm using PM2 to run thousands applications on dozens of servers, the performance of PM2 (maybe applications) is hard to track on production environment, e.g.:
-- Restart, stop, start events of PM2
-- CPU & Memory usages
-- I/O frequency
-- Network latency (Request / Response times, Apdex stuffs)
-- Triggers (restart / stop warning - SMS / Email)
+- [x] Restart, stop, start events of PM2
+- [x] CPU & Memory usages (collectd)
+- [ ] I/O frequency
+- [ ] Network latency (Request / Response times, Apdex stuffs)
+- [ ] Triggers (restart / stop warning - SMS / Email)
 
 ## How it works
 
@@ -30,19 +30,24 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 - [StatsD](docs/statsd.md)
 - [collectd](docs/collectd.md) *(optional)*
 
-When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to start up `pm2-ant`:
+When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to manage `pm2-ant`:
 ```bash
-$ nohup node ./pm2-ant.js > /dev/null 2>&1 & echo $! > pm2-ant.pid
+$ ./pm2-ant start
+$ ./pm2-ant stop
+$ ./pm2-ant restart
+$ ./pm2-ant status
+$ ./pm2-ant logs
 ```
 
-and to stop:
+Directly:
 ```bash
-$ kill -9 `cat pm2-ant.pid`
+$ node pm2-ant.js
 ```
 
-Debug mode: 
-```bash
-$ DEBUG=ant:* node pm2-ant.js
+Programmable:
+```javascript
+var pm2Ant = require('pm2-ant');
+pm2Ant.start([options]);
 ```
 
 Now you can view matrices with [Grafana](http://docs.grafana.org/installation/rpm/).
