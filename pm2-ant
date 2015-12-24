@@ -66,6 +66,7 @@ case "$1" in
     else
       kill -SIGHUP $(cat $pidfile);
     fi
+    sleep 1;
     status;
     ;;
 
