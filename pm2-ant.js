@@ -43,7 +43,6 @@ exports.start = function (options) {
   function shutdown(code, signal) {
     console.info('Shutting down....');
     monitor.quit();
-    console.info('Both', chalk.bold('pm2-emitter'), 'and', chalk.bold('statsd dgram'), 'sockets are closed.');
     console.info('Shutdown complete!');
     exports.exitGraceful(code, '-f');
   }
