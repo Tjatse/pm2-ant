@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node pm2-ant.js"
   },
+  "bin": {
+    "pm2-ant": "./pm2-ant"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/Tjatse/pm2-ant.git"

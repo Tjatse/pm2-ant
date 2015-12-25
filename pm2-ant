@@ -32,6 +32,27 @@ function status() {
   fi
 }
 
+function usage () {
+  cat <<-EOF
+
+  Usage: $0 <cmd> [options]
+
+  Commands:
+    start [config_file]   start the service
+    stop                  stop the running service
+    restart               restart the service
+    logs [log_directory]  view the logs
+
+  Examples:
+    $0 start
+    $0 start /path/to/my-pm2-gui.ini
+    $0 mon
+    $0 logs
+    $0 logs /path/to/logs
+
+EOF
+}
+
 case "$1" in
   start)
     isRunning;
@@ -95,6 +116,7 @@ case "$1" in
     ;;
 
   *)
-    echo -e "Usage: {start|stop|restart|logs}\n"
+    usage "$0"
     exit 1
+    ;;
 esac

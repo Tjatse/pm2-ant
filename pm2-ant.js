@@ -1,10 +1,9 @@
-var Monitor = require('./lib/monitor'),
-  chalk = require('chalk'),
+var chalk = require('chalk'),
   path = require('path'),
   fs = require('fs'),
   _ = require('lodash'),
-  Log = require('./lib/util/log'),
-  pkg = require('./package.json');
+  Monitor = require('./lib/monitor'),
+  Log = require('./lib/util/log');
 
 exports.start = function (options) {
   process.title = 'pm2-ant slave';
@@ -66,7 +65,7 @@ exports.start = function (options) {
   }
 };
 
-exports.exitGraceful = function exit(code, signal) {
+exports.exitGraceful = function(code, signal) {
   code = code || 0;
   if (signal != '-f') {
     console.debug('Slave has exited, code: ' + code + ', signal: ' + (signal || 'NULL'));
@@ -92,6 +91,7 @@ exports.exitGraceful = function exit(code, signal) {
   });
   tryToExit();
 };
+
 if (path.basename(process.mainModule.filename, '.js') == 'pm2-ant') {
   exports.start();
 }
