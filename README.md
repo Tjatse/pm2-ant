@@ -30,14 +30,10 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 - [StatsD](docs/statsd.md)
 - [collectd](docs/collectd.md) *(optional)*
 
-## Start-up
-When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to manage `pm2-ant`:
+## Usage
+When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to get usage helps:
 ```bash
-$ ./pm2-ant start
-$ ./pm2-ant stop
-$ ./pm2-ant restart
-$ ./pm2-ant status
-$ ./pm2-ant logs
+$ ./pm2-ant
 ```
 
 Directly:
