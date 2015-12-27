@@ -5,12 +5,15 @@ Unitech/PM2 performance monioring using Statsd and Graphite
 
 # Installation
 ```bash
+$ npm install pm2-ant -g
+# or
 $ npm install pm2-ant --production
 $ cd node_modules/pm2-ant
 # or
 $ git clone https://github.com/Tjatse/pm2-ant.git
 $ cd pm2-ant
 $ npm install --production
+$ pm2-ant <cmd> [options]
 ```
 
 ## Why this?
@@ -33,7 +36,7 @@ I'm using PM2 to run thousands applications on dozens of servers, the performanc
 ## Usage
 When the carbon and statsd are both running, just edit the `pm2-ant.ini` file to make everything goes fine, then use the following commands to get usage helps:
 ```bash
-$ ./pm2-ant
+$ pm2-ant
 ```
 
 Directly:
