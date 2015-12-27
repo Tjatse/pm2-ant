@@ -41,6 +41,7 @@ function usage () {
     start [config_file]   start the service
     stop                  stop the running service
     restart               restart the service
+    status                show the status of service
     logs [log_directory]  view the logs
 
   Examples:
