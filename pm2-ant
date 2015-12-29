@@ -1,6 +1,7 @@
 #!/bin/bash
 node="$(which node)"
-pidfile="pm2-ant.pid"
+SRC=$(cd $(dirname "$0"); pwd)
+pidfile="$SRC/pm2-ant.pid"
 prefixINFO="\033[1;32m[INFO]\033[0m"
 prefixWARN="\033[1;33m[WARN]\033[0m"
 
@@ -60,7 +61,7 @@ case "$1" in
     if [ 0 -eq $? ];
       then
         echo -e "$prefixINFO Starting..."
-        $node ./lib/daemon "$@"
+        $node $SRC/lib/daemon "$@"
         sleep 1;
     fi
     status;
@@ -84,7 +85,7 @@ case "$1" in
     if [ 0 -eq $? ];
       then
         echo -e "$prefixWARN PID not found, no need to stop anything.";
-        $node ./lib/daemon "$@"
+        $node $SRC/lib/daemon "$@"
     else
       kill -SIGHUP $(cat $pidfile);
     fi
@@ -97,8 +98,8 @@ case "$1" in
     err="pm2-ant.err";
     if [ ! -n "$2" ];
       then
-        out="./logs/$out";
-        err="./logs/$err";
+        out="$SRC/logs/$out";
+        err="$SRC/logs/$err";
     else
       out="$2/$out";
       err="$2/$err";
