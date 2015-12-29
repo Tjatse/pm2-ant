@@ -96,17 +96,19 @@ case "$1" in
   logs)
     out="pm2-ant.out";
     err="pm2-ant.err";
-    if [ ! -n "$2" ];
+    dir="$2";
+    if [ -z $dir ];
       then
-        out="$SRC/logs/$out";
-        err="$SRC/logs/$err";
+        dir="$SRC/logs" 
+        out="$dir/$out";
+        err="$dir/$err";
     else
-      out="$2/$out";
-      err="$2/$err";
+      out="$dir/$out";
+      err="$dir/$err";
     fi
     if [ ! -f $out ] && [ ! -f $err ];
       then
-        echo -e "$prefixWARN Logs can not be found in directory \033[1m$2\033[0m.";
+        echo -e "$prefixWARN Logs can not be found in directory \033[1m$dir\033[0m.";
     else
       echo -e "$prefixINFO Logs from \033[1m$out\033[0m and \033[1m$err\033[0m:";
       tail -n 20 -F $out $err;
