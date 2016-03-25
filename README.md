@@ -81,6 +81,10 @@ date = false
 level = debug
 ```
 
+## Changelogs
+# 0.1.4-alpha
+Keep pace with [pm2-gui](/Tjatse/pm2-gui)
+
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
