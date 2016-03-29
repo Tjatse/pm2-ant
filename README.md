@@ -83,8 +83,11 @@ level = debug
 ```
 
 ## Changelogs
+# 0.1.4-beta
+- fix SyntaxError: Unexpected token [#3](https://github.com/Tjatse/pm2-ant/pull/3) @xiilei
+
 # 0.1.4-alpha
-Keep pace with [pm2-gui](/Tjatse/pm2-gui)
+- Keep pace with [pm2-gui](/Tjatse/pm2-gui)
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
